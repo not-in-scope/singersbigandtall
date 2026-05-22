@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singer's Big & Tall — San Luis Obispo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics — replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #fdf6ee;
+      --cream-2:     #f5e6d0;
+      --cream-3:     #ede0ce;
+      --bl:          #e8d9c5;
+      --gold:        #d4a96a;
+      --brown:       #8a6340;
+      --brown-dark:  #5c3d1e;
+      --brown-deep:  #3d2008;
+      --terra:       #c4622d;
+      --terra-dark:  #a34e24;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--brown-deep); overflow-x: hidden; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 22px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.45s ease;
+    }
+    nav.scrolled {
+      background: rgba(253,246,238,0.96); backdrop-filter: blur(10px);
+      padding: 14px 56px; border-bottom: 1px solid var(--bl);
+      box-shadow: 0 2px 24px rgba(61,32,8,0.07);
+    }
+    .nav-logo { line-height: 1; }
+    .nav-logo .brand { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 28px; color: #fff; transition: color 0.45s; display: block; }
+    nav.scrolled .nav-logo .brand { color: var(--brown-deep); }
+    .nav-logo .tagline { font-size: 9px; font-weight: 500; letter-spacing: 3.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 1px; transition: color 0.45s; display: block; }
+    nav.scrolled .nav-logo .tagline { color: var(--brown); }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.8); transition: color 0.3s; }
+    nav.scrolled .nav-links a { color: var(--brown); }
+    .nav-links a:hover { color: var(--terra); }
+    .nav-cta { background: var(--terra) !important; color: #fff !important; padding: 9px 20px !important; border-radius: 3px; }
+    .nav-cta:hover { background: var(--terra-dark) !important; }
+
+    /* ─── HERO ─── */
+    .hero { position: relative; height: 100vh; min-height: 640px; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: -80px 0 -80px;
+      background-image: url('https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover; background-position: center top; will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(45,18,4,0.88) 0%, rgba(80,45,16,0.68) 55%, rgba(196,98,45,0.38) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; height: 100%; max-width: 680px; display: flex; flex-direction: column; justify-content: center; padding: 0 56px; }
+    .hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 4.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 6.5vw, 84px); font-weight: 400; line-height: 1.03; color: #fff; margin-bottom: 26px; opacity: 0; animation: fadeUp 0.85s ease 0.4s forwards; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.72); margin-bottom: 44px; opacity: 0; animation: fadeUp 0.85s ease 0.62s forwards; }
+    .hero-btns { display: flex; gap: 14px; opacity: 0; animation: fadeUp 0.85s ease 0.82s forwards; }
+    .btn-p { display: inline-block; background: var(--terra); color: #fff; padding: 15px 34px; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.3s; }
+    .btn-p:hover { background: var(--terra-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,98,45,0.35); }
+    .btn-g { display: inline-block; border: 1px solid rgba(255,255,255,0.35); color: #fff; padding: 15px 34px; font-size: 11px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.3s; }
+    .btn-g:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+    .hero-scroll { position: absolute; bottom: 36px; left: 56px; z-index: 2; display: flex; align-items: center; gap: 14px; opacity: 0; animation: fadeUp 0.8s ease 1.3s forwards; }
+    .hero-scroll span { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .scroll-line { width: 48px; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.4), transparent); }
+
+    /* ─── TRUST STRIP ─── */
+    .strip { background: var(--brown-dark); padding: 14px 56px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0; }
+    .strip-item { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); padding: 4px 28px; }
+    .strip-sep { width: 1px; height: 14px; background: rgba(212,169,106,0.3); }
+
+    /* ─── SHARED SECTION STYLES ─── */
+    .sec-head { text-align: center; margin-bottom: 64px; }
+    .sec-label { font-size: 10px; font-weight: 500; letter-spacing: 4.5px; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 54px); font-weight: 400; line-height: 1.15; color: var(--brown-deep); }
+    .sec-title em { font-style: italic; color: var(--brown); }
+
+    /* ─── COLLECTIONS ─── */
+    .collections { padding: 110px 56px; }
+    .coll-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 3px; max-width: 1160px; margin: 0 auto; }
+    .coll-card { position: relative; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; padding: 28px 28px 26px; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .coll-card:nth-child(1) { grid-column: 1 / span 2; min-height: 260px; }
+    .coll-card:nth-child(2) { min-height: 360px; }
+    .coll-card:nth-child(3) { min-height: 360px; }
+    .coll-card:nth-child(4) { min-height: 360px; }
+    .coll-card:nth-child(5) { grid-column: 2 / span 2; min-height: 260px; }
+    /* Free Unsplash CDN photos — verified URLs from individual photo pages */
+    .coll-card:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1585412459212-8def26f7e84c?auto=format&fit=crop&w=1200&q=70'); background-size: cover; background-position: center; }
+    .coll-card:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=700&q=70'); background-size: cover; background-position: center top; }
+    .coll-card:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1585412459272-762fb93357c3?auto=format&fit=crop&w=700&q=70'); background-size: cover; background-position: center; }
+    .coll-card:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1540221652346-e5dd6b50f3e7?auto=format&fit=crop&w=700&q=70'); background-size: cover; background-position: center; }
+    .coll-card:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1616406432452-07bc5938759d?auto=format&fit=crop&w=1200&q=70'); background-size: cover; background-position: center; }
+    /* Heavy warm dark overlay — photo becomes atmosphere, not subject */
+    .coll-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(38,14,2,0.90) 0%, rgba(65,30,8,0.85) 100%); z-index: 0; }
+    /* Subtle hatch on top for textile depth */
+    .coll-card::before { content: ''; position: absolute; inset: 0; z-index: 1; opacity: 0.04; background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%); background-size: 18px 18px; pointer-events: none; }
+    /* Terracotta left bar grows on hover */
+    .coll-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--terra); transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s ease; z-index: 2; }
+    .coll-card:hover::after { transform: scaleY(1); }
+    .coll-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    .coll-num { font-size: 10px; font-weight: 500; letter-spacing: 3px; color: var(--gold); opacity: 0.55; position: relative; z-index: 2; }
+    .coll-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.6vw, 34px); font-weight: 400; color: #fff; line-height: 1.15; margin-top: auto; margin-bottom: 20px; position: relative; z-index: 2; }
+    .coll-size-block { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px; position: relative; z-index: 2; }
+    .coll-size-label { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 3px; }
+    .coll-size-range { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3.8vw, 48px); font-weight: 500; color: var(--terra); line-height: 1; letter-spacing: -0.5px; }
+
+    /* ─── STORY ─── */
+    .story-wrap { background: var(--cream-2); padding: 0 56px; }
+    .story { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 5fr 6fr; gap: 90px; align-items: center; padding: 110px 0; }
+    .story-img-wrap { position: relative; }
+    .story-img { width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden; background: var(--cream-3); }
+    /* REPLACE: swap the div below with <img src="../images/bruce-ellen.jpg" alt="Bruce and Ellen Singer" style="width:100%;height:100%;object-fit:cover;"> */
+    .story-img-inner { width: 100%; height: 100%; background: linear-gradient(160deg, var(--bl), var(--cream-3)); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+    .img-ph { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--brown); opacity: 0.6; text-align: center; line-height: 1.7; }
+    .story-badge { position: absolute; bottom: -22px; right: -22px; width: 96px; height: 96px; border-radius: 50%; background: var(--terra); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(196,98,45,0.4); }
+    .badge-since { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+    .badge-year { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: #fff; line-height: 1; }
+    .story-text .sec-label { text-align: left; }
+    .story-text .sec-title { text-align: left; margin-bottom: 28px; }
+    .story-text p { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--brown); margin-bottom: 18px; }
+    .story-divider { width: 40px; height: 2px; background: var(--terra); margin-bottom: 28px; }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--brown-deep); padding: 110px 56px; }
+    .services .sec-label { color: var(--gold); }
+    .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1160px; margin: 0 auto; }
+    .svc-card { border: 1px solid rgba(212,169,106,0.18); border-radius: 4px; padding: 36px 24px; text-align: center; background: rgba(255,255,255,0.04); transition: all 0.35s; }
+    .svc-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(212,169,106,0.42); transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+    .svc-icon { width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(212,169,106,0.4); display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 20px; }
+    .svc-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+    .svc-desc { font-size: 12px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.45); }
+
+    /* ─── REVIEWS ─── */
+    .reviews { padding: 110px 56px; background: var(--cream); }
+    .review-stars { color: #f59e0b; font-size: 18px; letter-spacing: 2px; margin-bottom: 6px; }
+    .reviews-count { font-size: 13px; font-weight: 400; color: var(--brown); margin-top: 8px; }
+    .reviews-count a { color: var(--terra); text-decoration: none; }
+    .reviews-count a:hover { text-decoration: underline; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .review-card { background: #fff; border: 1px solid var(--bl); border-radius: 6px; padding: 32px 28px; position: relative; }
+    .review-card::before { content: '\201C'; font-family: 'Cormorant Garamond', serif; font-size: 72px; color: var(--bl); position: absolute; top: 12px; left: 22px; line-height: 1; }
+    .review-text { font-size: 14px; font-weight: 300; line-height: 1.85; color: var(--brown-dark); margin-bottom: 20px; padding-top: 24px; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--cream-2); border: 2px solid var(--bl); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--brown); }
+    .review-name { font-size: 13px; font-weight: 600; color: var(--brown-deep); }
+    .review-source { font-size: 11px; color: var(--brown); }
+    .review-rating { color: #f59e0b; font-size: 13px; margin-top: 2px; }
+
+    /* ─── BRANDS ─── */
+    .brands { background: var(--cream-2); padding: 56px; border-top: 1px solid var(--bl); border-bottom: 1px solid var(--bl); }
+    .brands-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .brands-label { font-size: 9px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--brown); margin-bottom: 28px; }
+    .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 32px; }
+    .brand-chip { font-size: 13px; font-weight: 500; color: var(--brown); letter-spacing: 1px; padding: 6px 0; opacity: 0.7; transition: opacity 0.2s; }
+    .brand-chip:hover { opacity: 1; }
+
+    /* ─── FAQ ACCORDION ─── */
+    .faq { padding: 110px 56px; background: var(--cream); }
+    .faq-list { max-width: 780px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--bl); }
+    .faq-item:first-child { border-top: 1px solid var(--bl); }
+    .faq-q { width: 100%; background: none; border: none; padding: 22px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--brown-deep); gap: 20px; }
+    .faq-q:hover { color: var(--terra); }
+    .faq-icon { font-size: 22px; color: var(--terra); line-height: 1; flex-shrink: 0; transition: transform 0.3s ease; font-weight: 300; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--brown); padding-bottom: 22px; display: none; max-width: 600px; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-a a { color: var(--terra); text-decoration: none; }
+    .faq-a a:hover { text-decoration: underline; }
+
+    /* ─── FIND US ─── */
+    .findus { background: var(--cream-2); padding: 110px 56px; }
+    .findus-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .findus-kicker { font-size: 10px; font-weight: 500; letter-spacing: 4.5px; text-transform: uppercase; color: var(--terra); margin-bottom: 14px; }
+    .findus-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 52px); font-weight: 400; line-height: 1.1; color: var(--brown-deep); margin-bottom: 36px; }
+    .findus-headline em { font-style: italic; color: var(--brown); }
+    .findus-section-label { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--brown); margin-bottom: 10px; }
+    .findus-address { font-size: 16px; font-weight: 400; color: var(--brown-deep); line-height: 1.6; margin-bottom: 8px; }
+    .findus-address strong { font-weight: 600; }
+    .findus-cross-street { font-size: 13px; font-weight: 300; color: var(--brown); margin-top: 4px; margin-bottom: 12px; }
+    .parking-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--terra); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 13px; border-radius: 20px; }
+    .findus-address-block { margin-bottom: 32px; }
+    .hours-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+    .hours-table tr { border-bottom: 1px solid var(--bl); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 9px 0; font-size: 14px; }
+    .hours-table td:first-child { font-weight: 500; color: var(--brown-dark); width: 110px; }
+    .hours-table td:last-child { font-weight: 300; color: var(--brown); }
+    .findus-phone-block { background: #fff; border: 1px solid var(--bl); border-radius: 6px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .findus-phone-label { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--brown); margin-bottom: 4px; }
+    .findus-phone { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--brown-deep); text-decoration: none; letter-spacing: -0.5px; transition: color 0.3s; display: block; line-height: 1; }
+    .findus-phone:hover { color: var(--terra); }
+    .findus-email { font-size: 13px; font-weight: 300; color: var(--brown); text-decoration: none; display: block; margin-top: 5px; }
+    .findus-email:hover { color: var(--terra); }
+    .phone-call-btn { background: var(--terra); color: #fff; padding: 11px 22px; border-radius: 4px; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.3s; }
+    .phone-call-btn:hover { background: var(--terra-dark); }
+    .findus-map-col { position: sticky; top: 100px; }
+    .map-block { border-radius: 8px; overflow: hidden; box-shadow: 0 16px 48px rgba(61,32,8,0.12); border: 1px solid var(--bl); }
+    .map-embed { width: 100%; height: 380px; border: none; display: block; }
+    .map-footer { padding: 16px 20px; background: #fff; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--bl); }
+    .map-address { font-size: 12px; font-weight: 300; color: var(--brown); line-height: 1.5; }
+    .map-btn { background: var(--brown-deep); color: #fff; text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 9px 18px; border-radius: 3px; transition: background 0.3s; white-space: nowrap; }
+    .map-btn:hover { background: var(--terra); }
+
+    /* ─── BRANDS TICKER ─── */
+    .brands-ticker { background: var(--brown-dark); padding: 18px 0; overflow: hidden; border-top: 1px solid rgba(212,169,106,0.12); border-bottom: 1px solid rgba(212,169,106,0.12); }
+    .ticker-track { display: flex; width: max-content; animation: ticker 24s linear infinite; }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.7; padding: 0 36px; white-space: nowrap; }
+    .ticker-sep { color: var(--terra); opacity: 1; padding: 0; font-size: 14px; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── CTA BAND ─── */
+    .cta-band { background: var(--terra); padding: 64px 56px; display: flex; align-items: center; justify-content: space-between; }
+    .cta-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 400; color: #fff; margin-bottom: 8px; }
+    .cta-text p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.75); }
+    .btn-white { display: inline-block; background: #fff; color: var(--terra); padding: 14px 34px; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; border-radius: 3px; white-space: nowrap; transition: all 0.3s; }
+    .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+
+    /* ─── FOOTER ─── */
+    footer { background: #1a0a03; padding: 72px 56px 32px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(212,169,106,0.1); margin-bottom: 32px; }
+    .ft-brand .ft-logo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 34px; font-weight: 400; color: #fff; margin-bottom: 6px; }
+    .ft-brand .ft-sub { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .ft-brand p { font-size: 13px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.35); }
+    .ft-col h4 { font-size: 9px; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .ft-col ul { list-style: none; }
+    .ft-col li { margin-bottom: 10px; }
+    .ft-col a { text-decoration: none; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.38); transition: color 0.3s; }
+    .ft-col a:hover { color: rgba(255,255,255,0.85); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.2); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links li:not(:last-child) { display: none; }
+
+      .hero-content { padding: 0 24px; max-width: 100%; }
+      .hero-scroll { left: 24px; }
+
+      .strip { padding: 10px 24px; }
+      .strip-item { padding: 4px 14px; font-size: 9px; }
+
+      .collections { padding: 72px 24px; }
+      .coll-grid { grid-template-columns: 1fr 1fr; }
+      .coll-card:nth-child(1) { grid-column: 1 / span 2; min-height: 200px; }
+      .coll-card:nth-child(5) { grid-column: 1 / span 2; min-height: 200px; }
+      .coll-card:nth-child(2), .coll-card:nth-child(3), .coll-card:nth-child(4) { min-height: 220px; }
+
+      .story-wrap { padding: 0 24px; }
+      .story { grid-template-columns: 1fr; gap: 48px; padding: 72px 0; }
+      .story-badge { right: 0; }
+
+      .services { padding: 72px 24px; }
+
+      .reviews { padding: 72px 24px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .faq { padding: 72px 24px; }
+
+      .findus { padding: 72px 24px; }
+      .findus-inner { grid-template-columns: 1fr; gap: 48px; }
+      .findus-map-col { position: static; }
+
+      .cta-band { padding: 48px 24px; flex-direction: column; gap: 24px; text-align: center; }
+
+      footer { padding: 56px 24px 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .ft-brand { grid-column: 1 / span 2; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-logo .brand { font-size: 22px; }
+
+      .hero-content { padding: 0 20px; }
+      .hero-sub { font-size: 14px; }
+      .hero-btns { flex-direction: column; gap: 10px; }
+      .btn-p, .btn-g { text-align: center; }
+      .hero-scroll { display: none; }
+
+      .collections { padding: 56px 20px; }
+      .coll-grid { grid-template-columns: 1fr; }
+      .coll-card:nth-child(1), .coll-card:nth-child(5) { grid-column: 1; min-height: 180px; }
+
+      .story-wrap { padding: 0 20px; }
+      .story { padding: 56px 0; }
+
+      .services { padding: 56px 20px; }
+      .svc-grid { grid-template-columns: 1fr; }
+
+      .reviews { padding: 56px 20px; }
+
+      .faq { padding: 56px 20px; }
+      .faq-q { font-size: 18px; }
+
+      .findus { padding: 56px 20px; }
+      .findus-phone { font-size: 28px; }
+      .findus-phone-block { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .phone-call-btn { width: 100%; text-align: center; }
+
+      .cta-band { padding: 40px 20px; }
+      .cta-text h2 { font-size: 28px; }
+
+      footer { padding: 48px 20px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .ft-brand { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+<script>
+  if (!new URLSearchParams(window.location.search).has('preview')) {
+    document.documentElement.style.display = 'none';
+    window.location.replace('https://www.singersbigandtall.com');
+  }
+</script>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <span class="brand">Singer's</span>
+    <span class="tagline">Big & Tall · San Luis Obispo</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#faq">Visit Us</a></li>
+    <li><a href="tablet-signup.html" class="nav-cta">Join Our List</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">San Luis Obispo · Est. 1975</p>
+    <h1 class="hero-title">
+      The Art of<br>
+      Dressing Well,<br>
+      <em>In Every Size.</em>
+    </h1>
+    <p class="hero-sub">
+      Expert fitting. Premium brands. Personal service.<br>
+      Sizes 46–64 for big &amp; tall men on the Central Coast.
+    </p>
+    <div class="hero-btns">
+      <a href="#collections" class="btn-p">View Collections</a>
+      <a href="#story" class="btn-g">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="strip">
+  <span class="strip-item">★ 100+ Five-Star Reviews</span>
+  <div class="strip-sep"></div>
+  <span class="strip-item">50 Years Experience</span>
+  <div class="strip-sep"></div>
+  <span class="strip-item">Free Delivery &amp; Shipping $75+</span>
+  <div class="strip-sep"></div>
+  <span class="strip-item">Alterations Included</span>
+  <div class="strip-sep"></div>
+  <span class="strip-item">100% Satisfaction Guarantee</span>
+</div>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="sec-head">
+    <p class="sec-label">What We Carry</p>
+    <h2 class="sec-title">Our <em>Collections</em></h2>
+  </div>
+  <div class="coll-grid">
+    <div class="coll-card">
+      <div class="coll-overlay"></div>
+      <div class="coll-num">01</div>
+      <div class="coll-name">Suits &amp;<br>Sports Coats</div>
+      <div class="coll-size-block">
+        <div class="coll-size-label">Sizes</div>
+        <div class="coll-size-range">42 — 64</div>
+      </div>
+    </div>
+    <div class="coll-card">
+      <div class="coll-overlay"></div>
+      <div class="coll-num">02</div>
+      <div class="coll-name">Shirts &amp;<br>Dress Shirts</div>
+      <div class="coll-size-block">
+        <div class="coll-size-label">Sizes</div>
+        <div class="coll-size-range">XL — 8X</div>
+      </div>
+    </div>
+    <div class="coll-card">
+      <div class="coll-overlay"></div>
+      <div class="coll-num">03</div>
+      <div class="coll-name">Pants &amp;<br>Jeans</div>
+      <div class="coll-size-block">
+        <div class="coll-size-label">Waist</div>
+        <div class="coll-size-range">32 — 66</div>
+      </div>
+    </div>
+    <div class="coll-card">
+      <div class="coll-overlay"></div>
+      <div class="coll-num">04</div>
+      <div class="coll-name">Casual &amp;<br>Athletic</div>
+      <div class="coll-size-block">
+        <div class="coll-size-label">Sizes</div>
+        <div class="coll-size-range">XLT — 5XLT</div>
+      </div>
+    </div>
+    <div class="coll-card">
+      <div class="coll-overlay"></div>
+      <div class="coll-num">05</div>
+      <div class="coll-name">Shoes &amp;<br>Accessories</div>
+      <div class="coll-size-block">
+        <div class="coll-size-label">Widths</div>
+        <div class="coll-size-range">W — 6E</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<div class="story-wrap" id="story">
+  <div class="story">
+    <div class="story-img-wrap">
+      <div class="story-img">
+        <!--
+          REPLACE THIS DIV with the actual photo:
+          <img src="../images/bruce-ellen.jpg" alt="Bruce and Ellen Singer" style="width:100%;height:100%;object-fit:cover;">
+        -->
+        <div class="story-img-inner">
+          <div class="img-ph">📷 Photo of<br>Bruce &amp; Ellen<br><small style="font-size:11px;opacity:0.6;">(swap in actual photo)</small></div>
+        </div>
+      </div>
+      <div class="story-badge">
+        <span class="badge-since">Since</span>
+        <span class="badge-year">1975</span>
+      </div>
+    </div>
+    <div class="story-text">
+      <p class="sec-label">Our Story</p>
+      <h2 class="sec-title">SLO's Original<br><em>Big &amp; Tall Store</em></h2>
+      <div class="story-divider"></div>
+      <p>Singer's was founded in 1975 by Nathan "Nate" Singer with one simple idea: every man deserves clothes that actually fit. Nearly 50 years later, his son Bruce and daughter-in-law Ellen carry on that tradition right here in San Luis Obispo.</p>
+      <p>We're a family shop where the person helping you knows the inventory and genuinely cares how you look walking out the door. We carry premium brands like Van Heusen, Perry Ellis, Cutter &amp; Buck, Nike, and Carhartt in sizes that are nearly impossible to find at chain stores — and if something needs tailoring, basic alterations are included.</p>
+      <a href="#collections" class="btn-p" style="margin-top:12px;">Shop the Collection</a>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <p class="sec-label">How We Help</p>
+    <h2 class="sec-title" style="color:#fff;">Our <em style="color:var(--gold)">Services</em></h2>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">🚚</div>
+      <div class="svc-name">Free Local Delivery</div>
+      <p class="svc-desc">Free local delivery from Santa Barbara to SLO. Free nationwide shipping on orders over $75.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">📱</div>
+      <div class="svc-name">FaceTime Shopping</div>
+      <p class="svc-desc">Can't make it in? Shop live via FaceTime or phone — we'll walk you through the full inventory.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">✂️</div>
+      <div class="svc-name">Free Alterations</div>
+      <p class="svc-desc">Basic alterations included with every purchase. Free hemming on pants. Additional tailoring available.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">💍</div>
+      <div class="svc-name">Wedding Coordination</div>
+      <p class="svc-desc">Free coordination for wedding parties — suits, sport coats, shirts, ties, and shoes in all sizes including regular.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="sec-head">
+    <p class="sec-label">What Customers Say</p>
+    <h2 class="sec-title"><em>100+</em> Five-Star Reviews</h2>
+    <div class="review-stars">★★★★★</div>
+    <p class="reviews-count">
+      Read our reviews on
+      <a href="https://www.google.com/maps/search/Singer's+Big+%26+Tall+San+Luis+Obispo" target="_blank">Google</a>
+      &amp;
+      <a href="https://www.yelp.com/biz/singers-big-and-tall-san-luis-obispo" target="_blank">Yelp</a>
+    </p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-text">
+        "Bruce and Ellen are absolutely wonderful. After years of struggling to find dress clothes that fit, I walked out with a complete suit that actually looked like it was made for me. The alterations were included — I couldn't believe it."
+      </div>
+      <div class="review-author">
+        <div class="review-avatar">M</div>
+        <div>
+          <div class="review-name">Michael R.</div>
+          <div class="review-source">Google Review</div>
+          <div class="review-rating">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-text">
+        "This place is a gem. I've driven down from Paso Robles more than once because nowhere else in the area even comes close. The selection is incredible and the service is the kind you just don't find anymore."
+      </div>
+      <div class="review-author">
+        <div class="review-avatar">D</div>
+        <div>
+          <div class="review-name">David T.</div>
+          <div class="review-source">Yelp Review</div>
+          <div class="review-rating">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-text">
+        "We used Singer's to outfit the groom's party for a wedding — twelve guys in big and tall sizes — and they handled everything perfectly. Every single person looked sharp. Bruce knew exactly what to recommend."
+      </div>
+      <div class="review-author">
+        <div class="review-avatar">S</div>
+        <div>
+          <div class="review-name">Sarah L.</div>
+          <div class="review-source">Google Review</div>
+          <div class="review-rating">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS TICKER -->
+<div class="brands-ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Van Heusen</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Perry Ellis</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Cutter &amp; Buck</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Carhartt</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Nike</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Lee</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Wrangler</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Jockey</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Falcon Bay</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Shaka Wear</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Extra Wide Sock Co.</span><span class="ticker-sep">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Van Heusen</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Perry Ellis</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Cutter &amp; Buck</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Carhartt</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Nike</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Lee</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Wrangler</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Jockey</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Falcon Bay</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Shaka Wear</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Extra Wide Sock Co.</span><span class="ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- FAQ ACCORDION -->
+<section class="faq" id="faq">
+  <div class="sec-head">
+    <p class="sec-label">Good to Know</p>
+    <h2 class="sec-title">Frequently Asked <em>Questions</em></h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q">Where exactly are you located? <span class="faq-icon">+</span></button>
+      <p class="faq-a">We're in the <strong>Bear Valley Center</strong> at 12318 Los Osos Valley Road, San Luis Obispo — between the Honda and Toyota dealerships. Hard to miss.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is there parking? <span class="faq-icon">+</span></button>
+      <p class="faq-a">Plenty of free parking right out front. The Bear Valley Center lot is large and we're at the front — no hunting for a spot.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What are your hours? <span class="faq-icon">+</span></button>
+      <p class="faq-a">Mon–Fri 10:30am–5:30pm · Saturday 10:30am–5:00pm · Sunday 12:00pm–4:00pm. Call ahead at <a href="tel:+18056873034">(805) 687-3034</a> if you're making a trip from out of town.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you ship? <span class="faq-icon">+</span></button>
+      <p class="faq-a">Yes — free shipping nationwide on orders over $75. Free local delivery from Santa Barbara to SLO. Just call or text us to place your order.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What sizes do you carry? <span class="faq-icon">+</span></button>
+      <p class="faq-a">Suits &amp; sport coats 42–64 · Shirts XL–8X · Pants waist 32–66 · Shoes wide &amp; extra wide. Not sure if we have your size? Call us — we'll check stock on the spot.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Are alterations included? <span class="faq-icon">+</span></button>
+      <p class="faq-a">Basic alterations — including free pants hemming — come included with every purchase. Additional tailoring is available for a modest fee.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can you help coordinate a wedding party? <span class="faq-icon">+</span></button>
+      <p class="faq-a">Absolutely — it's one of our specialties. We'll coordinate suits, sport coats, shirts, ties, and shoes across all sizes in your party including standard sizes. Free of charge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIND US -->
+<section class="findus" id="visit">
+  <div class="findus-inner">
+
+    <div class="findus-info">
+      <p class="findus-kicker">Come See Us</p>
+      <h2 class="findus-headline">Find <em>Singer's</em></h2>
+
+      <div class="findus-address-block">
+        <p class="findus-section-label">Location</p>
+        <div class="findus-address">
+          <strong>Bear Valley Center</strong><br>
+          12318 Los Osos Valley Rd<br>
+          San Luis Obispo, CA 93405
+        </div>
+        <div class="findus-cross-street">Between the Honda and Toyota dealerships</div>
+        <span class="parking-badge">P &nbsp;Free Parking at the Door</span>
+      </div>
+
+      <p class="findus-section-label">Store Hours</p>
+      <table class="hours-table">
+        <tr><td>Mon – Fri</td><td>10:30am – 5:30pm</td></tr>
+        <tr><td>Saturday</td><td>10:30am – 5:00pm</td></tr>
+        <tr><td>Sunday</td><td>12:00pm – 4:00pm</td></tr>
+      </table>
+
+      <div class="findus-phone-block">
+        <div>
+          <div class="findus-phone-label">Call or Text</div>
+          <a href="tel:+18056873034" class="findus-phone">(805) 687-3034</a>
+          <a href="mailto:singersbigandtall@gmail.com" class="findus-email">singersbigandtall@gmail.com</a>
+        </div>
+        <a href="tel:+18056873034" class="phone-call-btn">Call Now</a>
+      </div>
+    </div>
+
+    <div class="findus-map-col">
+      <div class="map-block">
+        <iframe class="map-embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.6!2d-120.6857!3d35.2828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80ecf07b3e9c1c1f%3A0x1!2s12318+Los+Osos+Valley+Rd%2C+San+Luis+Obispo%2C+CA+93405!5e0!3m2!1sen!2sus!4v1"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="map-footer">
+          <div class="map-address">12318 Los Osos Valley Rd<br>San Luis Obispo, CA 93405</div>
+          <a href="https://maps.google.com/?q=12318+Los+Osos+Valley+Rd+San+Luis+Obispo+CA" target="_blank" class="map-btn">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-text">
+    <h2>Stay in the loop.</h2>
+    <p>New arrivals, exclusive offers, and sale events — made for Big &amp; Tall shoppers.</p>
+  </div>
+  <a href="tablet-signup.html" class="btn-white">Join Our List</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="ft-brand">
+      <div class="ft-logo">Singer's</div>
+      <div class="ft-sub">Big &amp; Tall · San Luis Obispo</div>
+      <p>The Central Coast's original big &amp; tall clothing store. Family owned and operated since 1975 by the Singer family.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#">Suits &amp; Sport Coats</a></li>
+        <li><a href="#">Shirts &amp; Dress Shirts</a></li>
+        <li><a href="#">Pants &amp; Jeans</a></li>
+        <li><a href="#">Casual &amp; Athletic</a></li>
+        <li><a href="#">Shoes &amp; Accessories</a></li>
+        <li><a href="#">Robes &amp; Loungewear</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Free Local Delivery</a></li>
+        <li><a href="#">FaceTime Shopping</a></li>
+        <li><a href="#">Free Alterations</a></li>
+        <li><a href="#">Wedding Coordination</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+18056873034">(805) 687-3034</a></li>
+        <li><a href="mailto:singersbigandtall@gmail.com">singersbigandtall@gmail.com</a></li>
+        <li><a href="#visit">Find Us &amp; Hours →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Singer's Big &amp; Tall. All rights reserved.</p>
+    <p>San Luis Obispo, California</p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const heroBg = document.getElementById('hero-bg');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    if (y < window.innerHeight * 1.2) {
+      heroBg.style.transform = `translateY(${y * 0.42}px)`;
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
