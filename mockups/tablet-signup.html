@@ -6,7 +6,7 @@
   <title>Singer's Big & Tall — Join Our List</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Google Analytics — replace G-XXXXXXXXXX with your GA4 Measurement ID -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -32,9 +32,16 @@
       --terra-light:#f0e0d4;
     }
 
+    @font-face {
+      font-family: 'Cooper Black';
+      src: url('../fonts/cooper-black.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     html, body {
       height: 100%;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito', sans-serif;
       background: var(--cream);
       color: var(--brown-deep);
       -webkit-tap-highlight-color: transparent;
@@ -57,31 +64,17 @@
       justify-content: space-between;
       flex-shrink: 0;
     }
-    .top-bar .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 26px;
-      font-weight: 400;
-      color: #fff;
-      line-height: 1;
-    }
+    .top-bar .logo { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; gap: 0; }
+    .top-bar .logo-singers { font-family: 'Cooper Black', sans-serif; font-size: 11px; color: rgba(255,255,255,0.75); letter-spacing: 1px; line-height: 1; }
+    .top-bar .logo-bigtall { font-family: 'Cooper Black', sans-serif; font-size: 22px; color: #fff; line-height: 0.95; letter-spacing: -0.5px; }
     .top-bar .logo-sub {
       font-size: 9px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--gold);
       display: block;
-      margin-top: 2px;
-    }
-    .counter-badge {
-      background: rgba(212,169,106,0.15);
-      border: 1px solid rgba(212,169,106,0.3);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 1px;
+      margin-top: 3px;
+      font-family: 'Nunito', sans-serif;
     }
 
     /* ── FORM SCREEN ── */
@@ -110,13 +103,12 @@
       margin-bottom: 10px;
     }
     .form-heading h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 38px;
-      font-weight: 400;
+      font-family: 'Nunito', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
       line-height: 1.1;
       color: var(--brown-deep);
     }
-    .form-heading h1 em { font-style: italic; color: var(--brown); }
     .form-heading p {
       font-size: 14px;
       font-weight: 300;
@@ -154,7 +146,7 @@
       border: 2px solid var(--bl);
       border-radius: 6px;
       padding: 16px 18px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 16px;
       font-weight: 400;
       color: var(--brown-deep);
@@ -203,7 +195,7 @@
       border: none;
       border-radius: 6px;
       padding: 18px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 2.5px;
@@ -256,13 +248,12 @@
       animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
     .success-body h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 44px;
-      font-weight: 400;
+      font-family: 'Nunito', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
       color: var(--brown-deep);
       margin-bottom: 12px;
     }
-    .success-body h2 em { font-style: italic; color: var(--terra); }
     .success-body p {
       font-size: 15px;
       font-weight: 300;
@@ -277,7 +268,7 @@
       border: none;
       border-radius: 6px;
       padding: 18px 48px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 2.5px;
@@ -296,7 +287,7 @@
 </head>
 <body>
 <script>
-  if (!new URLSearchParams(window.location.search).has('preview')) {
+  if (window.location.hostname === 'not-in-scope.github.io' && !new URLSearchParams(window.location.search).has('preview')) {
     document.documentElement.style.display = 'none';
     window.location.replace('https://www.singersbigandtall.com');
   }
@@ -305,19 +296,17 @@
 <!-- ── FORM SCREEN ── -->
 <div class="screen active" id="screen-form">
   <div class="top-bar">
-    <div>
-      <span class="logo">Singer's</span>
-      <span class="logo-sub">Big &amp; Tall · San Luis Obispo</span>
+    <div class="logo">
+      <span class="logo-singers">Singer's</span>
+      <span class="logo-bigtall">Big &amp; Tall</span>
+      <span class="logo-sub">San Luis Obispo</span>
     </div>
-    <div class="counter-badge" id="counter-badge">Today: <span id="count">0</span> sign-ups</div>
   </div>
 
   <div class="form-body">
     <div class="form-card">
       <div class="form-heading">
-        <p class="eyebrow">VIP Customer List</p>
-        <h1>Join Our<br><em>Inner Circle</em></h1>
-        <p>Be first to know about new arrivals, exclusive sales,<br>and offers made for big &amp; tall shoppers.</p>
+        <h1>Get notified about sales<br>and new arrivals</h1>
       </div>
 
       <div class="field">
@@ -330,43 +319,37 @@
         <input type="email" id="email" placeholder="email@example.com" autocomplete="off">
       </div>
 
-      <div class="fields-row">
-        <div class="field">
-          <label>Phone <span class="opt">(optional)</span></label>
-          <input type="tel" id="phone" placeholder="(805) 000-0000" class="optional" autocomplete="off">
-        </div>
-        <div class="field">
-          <label>Birthday <span class="opt">(optional)</span></label>
-          <input type="text" id="birthday" placeholder="MM / DD" class="optional" autocomplete="off" maxlength="7">
-        </div>
+      <div class="field">
+        <label>Phone <span class="opt">(optional)</span></label>
+        <input type="tel" id="phone" placeholder="(805) 000-0000" class="optional" autocomplete="off">
       </div>
 
       <div class="legal">
         <p>By joining, you agree to receive email updates from Singer's Big &amp; Tall. We never sell or share your information. Unsubscribe anytime.</p>
       </div>
 
-      <button class="submit-btn" onclick="handleSubmit()">Join the List</button>
+      <button class="submit-btn" onclick="handleSubmit()">Sign Me Up</button>
     </div>
   </div>
 
   <div class="staff-bar">
-    <p>Staff: submit form, then hand tablet back · <a href="homepage.html" style="color:var(--terra);text-decoration:none;">← Back to site</a></p>
+    <p><a href="homepage.html" style="color:var(--terra);text-decoration:none;">← Back to site</a></p>
   </div>
 </div>
 
 <!-- ── SUCCESS SCREEN ── -->
 <div class="screen" id="screen-success">
   <div class="top-bar">
-    <div>
-      <span class="logo">Singer's</span>
-      <span class="logo-sub">Big &amp; Tall · San Luis Obispo</span>
+    <div class="logo">
+      <span class="logo-singers">Singer's</span>
+      <span class="logo-bigtall">Big &amp; Tall</span>
+      <span class="logo-sub">San Luis Obispo</span>
     </div>
-    <div class="counter-badge">Today: <span id="count-success">0</span> sign-ups</div>
   </div>
 
   <div class="success-body">
     <div class="success-icon">✓</div>
-    <h2>You're<br><em>on the list!</em></h2>
+    <h2>You're all set!</h2>
     <p>Thanks for joining — we'll be in touch with new arrivals and exclusive offers made for big &amp; tall shoppers.</p>
     <button class="next-btn" onclick="resetForm()">Sign Up Another Customer</button>
   </div>
@@ -377,27 +360,11 @@
 </div>
 
 <script>
-  let signUpCount = parseInt(sessionStorage.getItem('signUpCount') || '0');
-  document.getElementById('count').textContent = signUpCount;
-  document.getElementById('count-success').textContent = signUpCount;
-
-  // Birthday input auto-formatting
-  document.getElementById('birthday').addEventListener('input', function(e) {
-    let v = e.target.value.replace(/\D/g,'');
-    if (v.length >= 2) v = v.slice(0,2) + ' / ' + v.slice(2,4);
-    e.target.value = v;
-  });
-
   function handleSubmit() {
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     if (!name) { highlight('name'); return; }
     if (!email || !email.includes('@')) { highlight('email'); return; }
-
-    signUpCount++;
-    sessionStorage.setItem('signUpCount', signUpCount);
-    document.getElementById('count').textContent = signUpCount;
-    document.getElementById('count-success').textContent = signUpCount;
 
     document.getElementById('screen-form').classList.remove('active');
     document.getElementById('screen-success').classList.add('active');
@@ -416,7 +383,6 @@
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
     document.getElementById('phone').value = '';
-    document.getElementById('birthday').value = '';
     document.getElementById('screen-success').classList.remove('active');
     document.getElementById('screen-form').classList.add('active');
     document.getElementById('count').textContent = signUpCount;
